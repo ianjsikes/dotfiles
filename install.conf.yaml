@@ -15,6 +15,8 @@
     ~/.config/i3: i3
     ~/.config/fish: fish
     ~/.config/awesome: awesome
+    ~/.config/Code/User/settings.json: vscode/settings.json
+    ~/.config/Code/User/keybindings.json: vscode/keybindings.json
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

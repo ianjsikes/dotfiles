@@ -1,0 +1,43 @@
+{
+  "pico8.executablePath": "/home/ian/pico-8/pico8",
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.typescriptEnable": [
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.autoIndent": true,
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": false,
+  "npm-intellisense.scanDevDependencies": true,
+  "xo.enable": true,
+  "editor.tabSize": 2,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 13,
+  "editor.renderLineHighlight": "all",
+  "editor.cursorBlinking": "phase",
+  "editor.renderIndentGuides": true,
+  "editor.glyphMargin": false,
+  "typescript.check.tscVersion": false,
+  "window.zoomLevel": 1,
+  "files.insertFinalNewline": true,
+  "html.format.endWithNewline": true,
+  "terminal.integrated.fontLigatures": true,
+  "workbench.editor.tabCloseButton": "off",
+  "workbench.editor.showTabs": true,
+  "workbench.activityBar.visible": true,
+  "extensions.autoUpdate": true,
+  "editor.wordWrap": "off",
+  "elm.formatOnSave": true,
+  "workbench.colorTheme": "Tomorrow_Night_Eighties",
+  "rust.rustup": {
+    "toolchain": "nightly-x86_64-unknown-linux-gnu"
+  },
+  "rust.mode": "legacy",
+  "rust.rls": {
+    "useRustfmt": true
+  },
+  "python.linting.enabledWithoutWorkspace": false
+}
