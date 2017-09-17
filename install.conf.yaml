@@ -1,0 +1,20 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+      force: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    ~/.tmux.conf: tmux.conf
+    ~/.profile: profile
+    ~/.npmrc: npmrc
+    ~/.gitconfig: gitconfig
+    ~/.bashrc: bashrc
+    ~/.config/i3: i3
+    ~/.config/fish: fish
+    ~/.config/awesome: awesome
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
