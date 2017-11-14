@@ -1,5 +1,4 @@
 {
-  "pico8.executablePath": "/home/ian/pico-8/pico8",
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
@@ -30,6 +29,8 @@
   "workbench.activityBar.visible": true,
   "extensions.autoUpdate": true,
   "editor.wordWrap": "off",
+  
+  
   "elm.formatOnSave": true,
   "workbench.colorTheme": "Tomorrow_Night_Eighties",
   "rust.rustup": {
@@ -39,5 +40,6 @@
   "rust.rls": {
     "useRustfmt": true
   },
-  "python.linting.enabledWithoutWorkspace": false
+  "python.linting.enabledWithoutWorkspace": false,
+  "pico8.executablePath": "/home/ian/pico-8/pico8"
 }
