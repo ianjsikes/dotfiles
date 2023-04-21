@@ -9,7 +9,7 @@
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
 import:
- - ~/AppData/Roaming/alacritty/themes/themes/everforest_dark.yaml
+ - {{ .config_home }}/alacritty/themes/everforest_dark.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -47,8 +47,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 4
-    y: 4
+    x: 16
+    y: 16
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -426,7 +426,7 @@ shell:
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-working_directory: C:\Users\ianjs
+working_directory: {{ .chezmoi.homeDir }}
 
 #mouse:
   # Click settings
