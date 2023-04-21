@@ -1,0 +1,57 @@
+#!/usr/local/bin/fish
+
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# interaction settings
+yabai -m config mouse_follows_focus          off
+yabai -m config focus_follows_mouse          off
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            stack
+
+# placement settings
+yabai -m config layout                       bsp
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 off
+yabai -m config window_placement             second_child
+yabai -m config window_topmost               off
+
+# appearance settings
+yabai -m config top_padding                  63
+yabai -m config bottom_padding               12
+yabai -m config left_padding                 12
+yabai -m config right_padding                12
+yabai -m config window_gap                   12
+yabai -m config window_shadow                on
+yabai -m config window_opacity               off
+#yabai -m config window_opacity_duration      0.0
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.90
+
+yabai -m config window_border                off
+yabai -m config window_border_width          6
+yabai -m config active_window_border_color   0xffff79c6
+yabai -m config normal_window_border_color   0xff6272a4
+yabai -m config insert_feedback_color        0xffd75f5f
+
+# rules
+set unmanaged '^System Preferences$' Discord Installer Calculator 
+for app in $unmanaged; yabai -m rule --add app=$app manage=off; end
+
+set unmanaged 'Close tabs\?' 'Sign in - Google Accounts'
+for title in $unmanaged; yabai -m rule --add title=$title manage=off; end
+
+# Signals
+yabai -m signal --add label="on_display_added" event=display_added action="terminal-notifier -message 'Display Added!'"
+yabai -m signal --add label="on_display_removed" event=display_removed action="terminal-notifier -message 'Display Removed!'"
+
+yabai -m signal --add label="sketchybar_window_focus" event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+yabai -m signal --add label="sketchybar_window_created" event=window_created action="sketchybar -m --trigger windows_on_spaces &> /dev/null"
+yabai -m signal --add label="sketchybar_window_destroyed" event=window_destroyed action="sketchybar -m --trigger windows_on_spaces &> /dev/null"
+
+echo "yabai configuration loaded.."

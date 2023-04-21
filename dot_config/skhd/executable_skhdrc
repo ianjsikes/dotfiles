@@ -1,0 +1,84 @@
+##################
+### Mode setup ###
+##################
+
+# Add an on_enter command to the default mode
+:: default : yabai -m config window_border off
+
+# Define a new mode with an on_enter command
+:: win @ : yabai -m config window_border on
+
+# Navigation between modes
+meh - w ; win
+win < escape ; default
+win < space ; default
+win < meh - w ; default
+
+# Window focus
+meh - h : yabai -m window --focus west || yabai -m display --focus west
+meh - j : yabai -m window --focus south || yabai -m display --focus south
+meh - k : yabai -m window --focus north || yabai -m display --focus north
+meh - l : yabai -m window --focus east || yabai -m display --focus east
+win < h : yabai -m window --focus west || yabai -m display --focus west
+win < j : yabai -m window --focus south || yabai -m display --focus south
+win < k : yabai -m window --focus north || yabai -m display --focus north
+win < l : yabai -m window --focus east || yabai -m display --focus east
+
+win < u : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+win < i : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+
+# Moving spaces
+win < n : yabai -m space --focus (yabu space-index prev)
+win < m : yabai -m space --focus (yabu space-index next)
+win < shift - n : set pidx (yabu space-index prev) && yabai -m window --space $pidx && yabai -m space --focus $pidx
+win < shift - m : set nidx (yabu space-index next) && yabai -m window --space $nidx && yabai -m space --focus $nidx
+
+win < c : yabu cycle-space
+
+# Moving windows
+win < shift - h : yabai -m window --swap west || yabu move-window-display west
+win < shift - j : yabai -m window --swap south || yabu move-window-display south
+win < shift - k : yabai -m window --swap north || yabu move-window-display north
+win < shift - l : yabai -m window --swap east || yabu move-window-display east
+
+win < r : yabai -m space --rotate 90
+win < shift - r : yabai -m window --toggle split
+
+# Resizing windows
+win < cmd - h : yabai -m window west --resize right:-20:0 2> /dev/null || yabai -m window --resize right:-20:0
+win < cmd - j : yabai -m window north --resize bottom:0:20 2> /dev/null || yabai -m window --resize bottom:0:20
+win < cmd - k : yabai -m window south --resize top:0:-20 2> /dev/null || yabai -m window --resize top:0:-20
+win < cmd - l : yabai -m window east --resize left:20:0 2> /dev/null || yabai -m window --resize left:20:0
+
+win < shift + cmd - h : yabai -m window west --resize right:-100:0 2> /dev/null || yabai -m window --resize right:-100:0
+win < shift + cmd - j : yabai -m window north --resize bottom:0:100 2> /dev/null || yabai -m window --resize bottom:0:100
+win < shift + cmd - k : yabai -m window south --resize top:0:-100 2> /dev/null || yabai -m window --resize top:0:-100
+win < shift + cmd - l : yabai -m window east --resize left:100:0 2> /dev/null || yabai -m window --resize left:100:0
+
+win < z : yabai -m window --toggle zoom-fullscreen; sketchybar -m --trigger window_focus
+
+# Layout
+win < b : yabai -m space --layout bsp
+win < f : yabai -m space --layout float
+win < s : yabai -m space --layout stack
+
+win < shift - f : yabai -m window --toggle float; sketchybar -m --trigger window_focus
+win < p : yabai -m window --toggle sticky; yabai -m window --toggle topmost; yabai -m window --toggle pip
+
+hyper - t : ddcctl -d 2 -i 15; ddcctl -d 1 -i 15
+hyper - s : ddcctl -d 2 -i 15; ddcctl -d 1 -i 17
+
+# make floating window fill screen
+# shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+# shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# float / unfloat window and center on screen
+# alt - t : yabai -m window --toggle float;\
+#           yabai -m window --grid 4:4:1:1:2:2
+
+# toggle sticky(+float), topmost, picture-in-picture
+# alt - p : yabai -m window --toggle sticky;\
+#           yabai -m window --toggle topmost;\
+#           yabai -m window --toggle pip

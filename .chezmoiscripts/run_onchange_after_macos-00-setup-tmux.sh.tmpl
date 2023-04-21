@@ -1,0 +1,10 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env sh
+
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  mkdir -p ~/.tmux/plugins
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+{{ end -}}
+
