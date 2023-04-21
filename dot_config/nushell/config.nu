@@ -2,7 +2,7 @@
 #
 # version = 0.78.0
 
-use ~/AppData/Roaming/nushell/themes/everforest.nu
+use ./themes/everforest.nu
 let theme = (everforest)
 
 # External completer example

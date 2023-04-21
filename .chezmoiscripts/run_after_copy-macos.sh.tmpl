@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env sh
+
+rm -rf ~/Library/Application\ Support/nushell
+cp -R ~/.config/nushell ~/Library/Application\ Support
+
+{{ end -}}

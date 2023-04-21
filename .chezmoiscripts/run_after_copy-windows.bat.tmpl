@@ -1,1 +1,5 @@
+{{ if eq .chezmoi.os "windows" -}}
+
 xcopy /E /H /Y "%userprofile%\.config\*" "%userprofile%\AppData\Roaming"
+
+{{ end -}}
