@@ -17,6 +17,7 @@ window:
   title: Alacritty
   dynamic_title: true
   resize_increments: true
+  option_as_alt: Both
 
 scrolling:
   history: 10000
@@ -24,9 +25,9 @@ scrolling:
 
 font:
   normal:
-    family: {{ .terminal_font }}
+    family: {{ .term_font }}
     style: Regular
-  size: {{ .terminal_font_size }}
+  size: {{ .term_font_size }}
   builtin_box_drawing: true
 
 cursor:
@@ -41,8 +42,7 @@ cursor:
 live_config_reload: true
 
 shell:
-  program: {{ .nu_executable }}
-  args:
-    - --login
+  program: {{ .term_shell_program }}
+  args: {{ .term_shell_args }}
 
 working_directory: {{ .chezmoi.homeDir }}
