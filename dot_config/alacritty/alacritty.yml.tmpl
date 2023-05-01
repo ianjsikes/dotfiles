@@ -24,9 +24,9 @@ scrolling:
 
 font:
   normal:
-    family: FiraCode NFM
+    family: {{ .terminal_font }}
     style: Regular
-  size: 11.0
+  size: {{ .terminal_font_size }}
   builtin_box_drawing: true
 
 cursor:
@@ -41,7 +41,7 @@ cursor:
 live_config_reload: true
 
 shell:
-  program: nu
+  program: {{ .nu_executable }}
   args:
     - --login
 

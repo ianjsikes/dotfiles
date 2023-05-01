@@ -1,13 +1,4 @@
 # Nushell Environment Config File
-#
-# version = 0.78.0
-
-# The prompt indicators are environmental variables that represent
-# the state of the prompt
-let-env PROMPT_INDICATOR = {|| "> " }
-let-env PROMPT_INDICATOR_VI_INSERT = {|| ": " }
-let-env PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
-let-env PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
@@ -38,14 +29,35 @@ let-env NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
-if (uname -s | str contains "MINGW") or (uname -s | str contains "MSYS") {
-    ssh-agent    
+if (sys).host.name == "Windows" {
+    ssh-agent
 } else {
     ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
 }
 
-# To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-# let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+let-env ANDROID_HOME = '/Users/ian/Library/Android/sdk'
+let-env ANDROID_SDK = '/Users/ian/Library/Android/sdk'
+let-env JAVA_HOME = '/Applications/Android Studio Preview.app/Contents/jbr/Contents/Home'
+let-env VOLTA_HOME = '/Users/ian/.volta'
+
+let-env OSPATH = if (sys).host.name == "Windows" { $env.Path } else { $env.PATH }
+
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend '/usr/local/bin')
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend '~/.local/bin')
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend '~/bin')
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend '~/.cargo/bin')
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend $'($env.VOLTA_HOME)/bin')
+
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend $'($env.ANDROID_HOME)/emulator')
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend $'($env.ANDROID_HOME)/tools')
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend $'($env.ANDROID_HOME)/platform-tools')
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend $'($env.JAVA_HOME)/../../../jre/jdk/Contents/Home/bin')
+
+if (sys).host.name == "Windows" {
+  let-env Path = $env.OSPATH
+} else {
+  let-env PATH = $env.OSPATH
+}
 
 let-env EDITOR = hx
 
