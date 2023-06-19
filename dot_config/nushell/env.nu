@@ -53,6 +53,7 @@ let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend $'($env.ANDROID_
 let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend $'($env.ANDROID_HOME)/platform-tools')
 let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend $'($env.JAVA_HOME)/../../../jre/jdk/Contents/Home/bin')
 let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend '/nix/var/nix/profiles/default/bin')
+let-env OSPATH = ($env.OSPATH | split row (char esep) | prepend '~/.nix-profile/bin')
 
 if (sys).host.name == "Windows" {
   let-env Path = $env.OSPATH
