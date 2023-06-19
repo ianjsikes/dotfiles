@@ -1,0 +1,32 @@
+layout {
+    cwd "/Users/ian/code"
+
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab_template name="three_pane" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane split_direction="vertical" {
+            pane size="40%"
+            pane split_direction="horizontal" {
+                pane cwd="."
+                pane
+                children
+            }
+        }
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    three_pane name="dev" cwd="." focus=true
+}
